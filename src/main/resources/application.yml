@@ -1,0 +1,48 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: springcloud-gateway
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_ADDR:nacos:8848}
+
+    gateway:
+      routes:
+
+        - id: basicdata
+          uri: lb://emss-dmp-basicdata-data
+          predicates:
+            - Path=/emss-dmp-basicdata-data/**
+          filters:
+            - StripPrefix=1
+
+        - id: dataimport
+          uri: lb://emss-dmp-dataimport-data
+          predicates:
+            - Path=/emss-dmp-dataimport-data/**
+          filters:
+            - StripPrefix=1
+
+        - id: indexmarket
+          uri: lb://emss-dmp-indexmarket-data
+          predicates:
+            - Path=/emss-dmp-indexmarket-data/**
+          filters:
+            - StripPrefix=1
+
+        - id: indexservice
+          uri: lb://emss-dmp-indexservice-data
+          predicates:
+            - Path=/emss-dmp-indexservice-data/**
+          filters:
+            - StripPrefix=1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
