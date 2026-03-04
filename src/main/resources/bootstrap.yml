@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: springcloud-gateway
+
+  cloud:
+    nacos:
+      config:
+        server-addr: ${NACOS_ADDR:nacos:8848}
+        namespace: ${NACOS_NAMESPACE:}     # 不用就留空=public
+        group: ${NACOS_GROUP:DEFAULT_GROUP}
+        file-extension: yaml              # 你在 Nacos 里用 yaml
+
+        # 建议开启自动刷新（默认也基本是开启的）
+        refresh-enabled: true
