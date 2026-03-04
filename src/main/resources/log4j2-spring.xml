@@ -2,13 +2,9 @@
 <Configuration status="WARN" monitorInterval="30">
 
     <Properties>
-        <!-- 项目名 -->
         <Property name="APP_NAME">springcloud-gateway</Property>
-
-        <!-- 日志目录 -->
         <Property name="LOG_PATH">logs</Property>
 
-        <!-- 日志格式 -->
         <Property name="LOG_PATTERN">
             %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n
         </Property>
@@ -21,7 +17,7 @@
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
 
-        <!-- 文件：按天滚动 -->
+        <!-- 文件 -->
         <RollingFile name="File"
                      fileName="${LOG_PATH}/${APP_NAME}.log"
                      filePattern="${LOG_PATH}/${APP_NAME}-%d{yyyy-MM-dd}.log.gz">
@@ -38,8 +34,21 @@
     </Appenders>
 
     <Loggers>
+
         <!-- 你自己的代码 -->
         <Logger name="com.lvwyh.gateway" level="DEBUG"/>
+
+        <!-- Gateway 路由日志 -->
+        <Logger name="org.springframework.cloud.gateway" level="DEBUG"/>
+
+        <!-- 负载均衡 -->
+        <Logger name="org.springframework.cloud.loadbalancer" level="DEBUG"/>
+
+        <!-- Netty HTTP -->
+        <Logger name="reactor.netty.http.client" level="DEBUG"/>
+
+        <!-- Nacos -->
+        <Logger name="com.alibaba.cloud.nacos" level="INFO"/>
 
         <!-- 根日志 -->
         <Root level="INFO">

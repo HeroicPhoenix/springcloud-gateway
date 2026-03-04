@@ -9,6 +9,14 @@ spring:
     nacos:
       discovery:
         server-addr: ${NACOS_ADDR:nacos:8848}
+        namespace: ${NACOS_NAMESPACE:}
+        group: ${NACOS_GROUP:DEFAULT_GROUP}
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.cloud.loadbalancer: DEBUG
+    com.alibaba.cloud.nacos: INFO
 
 management:
   endpoints:
